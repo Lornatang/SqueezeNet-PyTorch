@@ -1,12 +1,14 @@
-# MobileNetV3-PyTorch
+# SqueezeNet-PyTorch
 
 ## Overview
 
-This repository contains an op-for-op PyTorch reimplementation of [Searching for MobileNetV3](https://arxiv.org/pdf/1905.02244v5.pdf).
+This repository contains an op-for-op PyTorch reimplementation
+of [SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size
+](https://arxiv.org/pdf/1602.07360v4.pdf).
 
 ## Table of contents
 
-- [MobileNetV3-PyTorch](#mobilenetv3-pytorch)
+- [SqueezeNet-PyTorch](#squeezenet-pytorch)
     - [Overview](#overview)
     - [Table of contents](#table-of-contents)
     - [Download weights](#download-weights)
@@ -18,7 +20,7 @@ This repository contains an op-for-op PyTorch reimplementation of [Searching for
     - [Result](#result)
     - [Contributing](#contributing)
     - [Credit](#credit)
-        - [Searching for MobileNetV3](#searching-for-mobilenetv3)
+        - [SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size](#squeezenet-alexnet-level-accuracy-with-50x-fewer-parameters-and-05mb-model-size)
 
 ## Download weights
 
@@ -40,12 +42,12 @@ Both training and testing only need to modify the `config.py` file.
 
 ### Test
 
-- line 29: `model_arch_name` change to `mobilenet_v3_small`.
+- line 29: `model_arch_name` change to `squeezenet`.
 - line 31: `model_mean_parameters` change to `[0.485, 0.456, 0.406]`.
 - line 32: `model_std_parameters` change to `[0.229, 0.224, 0.225]`.
 - line 34: `model_num_classes` change to `1000`.
 - line 36: `mode` change to `test`.
-- line 89: `model_weights_path` change to `./results/pretrained_models/MobileNetV3_small-ImageNet_1K-73d198d1.pth.tar`.
+- line 89: `model_weights_path` change to `./results/pretrained_models/SqueezeNet-ImageNet_1K-145ddc1c.pth.tar`.
 
 ```bash
 python3 test.py
@@ -53,12 +55,12 @@ python3 test.py
 
 ### Train model
 
-- line 29: `model_arch_name` change to `mobilenet_v3_small`.
+- line 29: `model_arch_name` change to `squeezenet`.
 - line 31: `model_mean_parameters` change to `[0.485, 0.456, 0.406]`.
 - line 32: `model_std_parameters` change to `[0.229, 0.224, 0.225]`.
 - line 34: `model_num_classes` change to `1000`.
 - line 36: `mode` change to `train`.
-- line 50: `pretrained_model_weights_path` change to `./results/pretrained_models/MobileNetV3_small-ImageNet_1K-73d198d1.pth.tar`.
+- line 50: `pretrained_model_weights_path` change to `./results/pretrained_models/SqueezeNet-ImageNet_1K-145ddc1c.pth.tar`.
 
 ```bash
 python3 train.py
@@ -66,12 +68,12 @@ python3 train.py
 
 ### Resume train model
 
-- line 29: `model_arch_name` change to `mobilenet_v3_small`.
+- line 29: `model_arch_name` change to `squeezenet`.
 - line 31: `model_mean_parameters` change to `[0.485, 0.456, 0.406]`.
 - line 32: `model_std_parameters` change to `[0.229, 0.224, 0.225]`.
 - line 34: `model_num_classes` change to `1000`.
 - line 36: `mode` change to `train`.
-- line 53: `resume` change to `./samples/mobilenet_v3_small-ImageNet_1K/epoch_xxx.pth.tar`.
+- line 53: `resume` change to `./samples/squeezenet-ImageNet_1K/epoch_xxx.pth.tar`.
 
 ```bash
 python3 train.py
@@ -79,17 +81,16 @@ python3 train.py
 
 ## Result
 
-Source of original paper results: [https://arxiv.org/pdf/1905.02244v5.pdf](https://arxiv.org/pdf/1905.02244v5.pdf))
+Source of original paper results: [https://arxiv.org/pdf/1602.07360v4.pdf](https://arxiv.org/pdf/1602.07360v4.pdf))
 
 In the following table, the top-x error value in `()` indicates the result of the project, and `-` indicates no test.
 
 |         Model          |   Dataset   | Top-1 error (val) | Top-5 error (val) |
 |:----------------------:|:-----------:|:-----------------:|:-----------------:|
-| mobilenet_v3_small-1.0 | ImageNet_1K | 32.6%(**32.3%**)  |   -(**12.5%**)    |
-| mobilenet_v3_large-1.0 | ImageNet_1K | 24.8%(**24.7%**)  |    -(**7.4%**)    |
+|       squeezenet       | ImageNet_1K | 42.5%(**41.9%**)  | 19.7%(**19.6%**)  |
 
 ```bash
-# Download `MobileNetV3_small-ImageNet_1K-73d198d1.pth.tar` weights to `./results/pretrained_models`
+# Download `SqueezeNet-ImageNet_1K-145ddc1c.pth.tar` weights to `./results/pretrained_models`
 # More detail see `README.md<Download weights>`
 python3 ./inference.py 
 ```
@@ -101,13 +102,13 @@ Input:
 Output:
 
 ```text
-Build `mobilenet_v3_small` model successfully.
-Load `mobilenet_v3_small` model weights `/MobileNetV3-PyTorch/results/pretrained_models/MobileNetV3_small-ImageNet_1K-73d198d1.pth.tar` successfully.
-tench, Tinca tinca                                                          (19.38%)
-barracouta, snoek                                                           (7.93%)
-platypus, duckbill, duckbilled platypus, duck-billed platypus, Ornithorhynchus anatinus (6.00%)
-gar, garfish, garpike, billfish, Lepisosteus osseus                         (4.50%)
-triceratops                                                                 (1.97%)
+Build `squeezenet` model successfully.
+Load `squeezenet` model weights `/SqueezeNet-PyTorch/results/pretrained_models/SqueezeNet-ImageNet_1K-145ddc1c.pth.tar` successfully.
+tench, Tinca tinca                                                          (80.22%)
+barracouta, snoek                                                           (15.18%)
+bolete                                                                      (0.68%)
+armadillo                                                                   (0.67%)
+reel                                                                        (0.38%)
 ```
 
 ## Contributing
@@ -119,35 +120,29 @@ I look forward to seeing what the community does with these models!
 
 ### Credit
 
-#### Searching for MobileNetV3
+#### SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size
 
-*Andrew Howard, Mark Sandler, Grace Chu, Liang-Chieh Chen, Bo Chen, Mingxing Tan, Weijun Wang, Yukun Zhu, Ruoming Pang,
-Vijay Vasudevan, Quoc V. Le, Hartwig Adam*
+*Forrest N. Iandola, Song Han, Matthew W. Moskewicz, Khalid Ashraf, William J. Dally, Kurt Keutzer*
 
 ##### Abstract
 
-We present the next generation of MobileNets based on a combination of complementary search techniques as well as a
-novel architecture design. MobileNetV3 is tuned to mobile phone CPUs through a combination of hardware-aware network
-architecture search (NAS) complemented by the NetAdapt algorithm and then subsequently improved through novel
-architecture advances. This paper starts the exploration of how automated search algorithms and network design can work
-together to harness complementary approaches improving the overall state of the art. Through this process we create two
-new MobileNet models for release: MobileNetV3-Large and MobileNetV3-Small which are targeted for high and low resource
-use cases. These models are then adapted and applied to the tasks of object detection and semantic segmentation. For the
-task of semantic segmentation (or any dense pixel prediction), we propose a new efficient segmentation decoder Lite
-Reduced Atrous Spatial Pyramid Pooling (LR-ASPP). We achieve new state of the art results for mobile classification,
-detection and segmentation. MobileNetV3-Large is 3.2\% more accurate on ImageNet classification while reducing latency
-by 15\% compared to MobileNetV2. MobileNetV3-Small is 4.6\% more accurate while reducing latency by 5\% compared to
-MobileNetV2. MobileNetV3-Large detection is 25\% faster at roughly the same accuracy as MobileNetV2 on COCO detection.
-MobileNetV3-Large LR-ASPP is 30\% faster than MobileNetV2 R-ASPP at similar accuracy for Cityscapes segmentation.
+Recent research on deep neural networks has focused primarily on improving accuracy. For a given accuracy level, it is
+typically possible to identify multiple DNN architectures that achieve that accuracy level. With equivalent accuracy,
+smaller DNN architectures offer at least three advantages: (1) Smaller DNNs require less communication across servers
+during distributed training. (2) Smaller DNNs require less bandwidth to export a new model from the cloud to an
+autonomous car. (3) Smaller DNNs are more feasible to deploy on FPGAs and other hardware with limited memory. To provide
+all of these advantages, we propose a small DNN architecture called SqueezeNet. SqueezeNet achieves AlexNet-level
+accuracy on ImageNet with 50x fewer parameters. Additionally, with model compression techniques we are able to compress
+SqueezeNet to less than 0.5MB (510x smaller than AlexNet).
+The SqueezeNet architecture is available for download here: [this https URL](https://github.com/DeepScale/SqueezeNet)
 
-[[Paper]](https://arxiv.org/pdf/1905.02244v5.pdf)
+[[Paper]](https://arxiv.org/pdf/1602.07360v4.pdf)
 
 ```bibtex
-@inproceedings{howard2019searching,
-  title={Searching for mobilenetv3},
-  author={Howard, Andrew and Sandler, Mark and Chu, Grace and Chen, Liang-Chieh and Chen, Bo and Tan, Mingxing and Wang, Weijun and Zhu, Yukun and Pang, Ruoming and Vasudevan, Vijay and others},
-  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
-  pages={1314--1324},
-  year={2019}
+@article{SqueezeNet,
+    Author = {Forrest N. Iandola and Song Han and Matthew W. Moskewicz and Khalid Ashraf and William J. Dally and Kurt Keutzer},
+    Title = {SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and $<$0.5MB model size},
+    Journal = {arXiv:1602.07360},
+    Year = {2016}
 }
 ```
